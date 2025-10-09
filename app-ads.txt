@@ -1,8 +1,8 @@
 google.com, pub-6837328794080297, DIRECT, f08c47fec0942fa0
 unityads.unity3d.com, 20067493089374, DIRECT, 9a602e19d78b193a
 vungle.com, 68baa02f73b0b94e3242ec4c, DIRECT, c552e6c4f3d63e0e
-# Meta Audience Network
 facebook.com, 801537016378071, RESELLER, c3e20eee3f780d68
+
 
 33across.com, 0010b00002MptSLAAZ, RESELLER, bbea06d9c4d2853c
 
@@ -134,6 +134,9 @@ google.com, pub-5060663379040713, RESELLER, f08c47fec0942fa0
 
 grouprvn.com, 420212011, RESELLER
 
+
+      indexexchange.com, 50, RESELLER
+
 ignitemediatech.com, pub_11115, RESELLER
 
 iion.io, 10162, RESELLER
@@ -153,6 +156,8 @@ improvedigital.com, 2525, RESELLER
 improvedigital.com, 2534, RESELLER
 
 improvedigital.com, 2609, RESELLER
+
+  inmobi.com, 1236, RESELLER, 83e75a7f5c2a18e6
 
 inmobi.com, 0c8e054083954c68a45044396a1c3df8, RESELLER, 83e75a7ae333ca9d
 
@@ -277,6 +282,8 @@ playwire.com, 1025119, RESELLER
 pokkt.com, 6246, RESELLER, c45702d9311e25fd
 
 prado.co, 14260, RESELLER
+
+      pubmatic.com, 156423, RESELLER, 5d62403b186f2ace
 
 pubmatic.com, 156520, RESELLER, 5d62403b186f2ace
 
@@ -608,3 +615,4 @@ zmaticoo.com, 5135063, RESELLER
 zmaticoo.com, 5135195, RESELLER
 
 zmaticoo.com, 5135704, RESELLER
+
