@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>VChoice / VChronicles — Privacy</title>
+  <title>VChronicles — Privacy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex" />
   <style>
@@ -60,11 +59,15 @@
     .chip[aria-pressed="true"]{
       background:#e9f1ff;border-color:#b6d1ff;
     }
+
+    /* SVG flags */
     .flag{
       width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;
       border-radius:999px;background:#fff;border:1px solid #e6e9ef;
-      font-size:14px;
+      overflow:hidden;
     }
+    .flag svg{width:100%;height:100%;display:block}
+
     .chip small{color:var(--muted);font-weight:600;letter-spacing:.2px}
 
     .grid{
@@ -97,31 +100,159 @@
     <div class="langbar">
       <div class="chips" id="langChips">
         <button class="chip" type="button" data-lang="en" aria-pressed="true" aria-label="English">
-          <span class="flag">🇺🇸</span><span>English</span><small class="mono">EN</small>
+          <span class="flag" aria-hidden="true">
+            <!-- US -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <defs><clipPath id="cUS"><circle cx="32" cy="32" r="31"/></clipPath></defs>
+              <g clip-path="url(#cUS)">
+                <rect width="64" height="64" fill="#fff"/>
+                <g fill="#b22234">
+                  <rect y="0" width="64" height="5"/>
+                  <rect y="10" width="64" height="5"/>
+                  <rect y="20" width="64" height="5"/>
+                  <rect y="30" width="64" height="5"/>
+                  <rect y="40" width="64" height="5"/>
+                  <rect y="50" width="64" height="5"/>
+                  <rect y="60" width="64" height="4"/>
+                </g>
+                <rect width="28" height="24" fill="#3c3b6e"/>
+                <g fill="#fff">
+                  <circle cx="4" cy="4" r="1.1"/><circle cx="10" cy="4" r="1.1"/><circle cx="16" cy="4" r="1.1"/><circle cx="22" cy="4" r="1.1"/>
+                  <circle cx="7" cy="8" r="1.1"/><circle cx="13" cy="8" r="1.1"/><circle cx="19" cy="8" r="1.1"/><circle cx="25" cy="8" r="1.1"/>
+                  <circle cx="4" cy="12" r="1.1"/><circle cx="10" cy="12" r="1.1"/><circle cx="16" cy="12" r="1.1"/><circle cx="22" cy="12" r="1.1"/>
+                  <circle cx="7" cy="16" r="1.1"/><circle cx="13" cy="16" r="1.1"/><circle cx="19" cy="16" r="1.1"/><circle cx="25" cy="16" r="1.1"/>
+                  <circle cx="4" cy="20" r="1.1"/><circle cx="10" cy="20" r="1.1"/><circle cx="16" cy="20" r="1.1"/><circle cx="22" cy="20" r="1.1"/>
+                </g>
+              </g>
+            </svg>
+          </span>
+          <span>English</span><small class="mono">EN</small>
         </button>
+
         <button class="chip" type="button" data-lang="fr" aria-pressed="false" aria-label="Français">
-          <span class="flag">🇫🇷</span><span>Français</span><small class="mono">FR</small>
+          <span class="flag" aria-hidden="true">
+            <!-- FR -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <defs><clipPath id="cFR"><circle cx="32" cy="32" r="31"/></clipPath></defs>
+              <g clip-path="url(#cFR)">
+                <rect width="64" height="64" fill="#fff"/>
+                <rect width="21.33" height="64" x="0" fill="#0055a4"/>
+                <rect width="21.33" height="64" x="42.67" fill="#ef4135"/>
+              </g>
+            </svg>
+          </span>
+          <span>Français</span><small class="mono">FR</small>
         </button>
+
         <button class="chip" type="button" data-lang="de" aria-pressed="false" aria-label="Deutsch">
-          <span class="flag">🇩🇪</span><span>Deutsch</span><small class="mono">DE</small>
+          <span class="flag" aria-hidden="true">
+            <!-- DE -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <defs><clipPath id="cDE"><circle cx="32" cy="32" r="31"/></clipPath></defs>
+              <g clip-path="url(#cDE)">
+                <rect width="64" height="64" fill="#ffce00"/>
+                <rect width="64" height="42.66" y="0" fill="#dd0000"/>
+                <rect width="64" height="21.33" y="0" fill="#000"/>
+              </g>
+            </svg>
+          </span>
+          <span>Deutsch</span><small class="mono">DE</small>
         </button>
+
         <button class="chip" type="button" data-lang="it" aria-pressed="false" aria-label="Italiano">
-          <span class="flag">🇮🇹</span><span>Italiano</span><small class="mono">IT</small>
+          <span class="flag" aria-hidden="true">
+            <!-- IT -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <defs><clipPath id="cIT"><circle cx="32" cy="32" r="31"/></clipPath></defs>
+              <g clip-path="url(#cIT)">
+                <rect width="64" height="64" fill="#fff"/>
+                <rect width="21.33" height="64" x="0" fill="#009246"/>
+                <rect width="21.33" height="64" x="42.67" fill="#ce2b37"/>
+              </g>
+            </svg>
+          </span>
+          <span>Italiano</span><small class="mono">IT</small>
         </button>
+
         <button class="chip" type="button" data-lang="pt" aria-pressed="false" aria-label="Português">
-          <span class="flag">🇵🇹</span><span>Português</span><small class="mono">PT</small>
+          <span class="flag" aria-hidden="true">
+            <!-- PT -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <defs><clipPath id="cPT"><circle cx="32" cy="32" r="31"/></clipPath></defs>
+              <g clip-path="url(#cPT)">
+                <rect width="64" height="64" fill="#c8102e"/>
+                <rect width="26" height="64" x="0" fill="#006600"/>
+                <circle cx="26" cy="32" r="10" fill="#ffcc00"/>
+                <circle cx="26" cy="32" r="6.8" fill="#fff"/>
+              </g>
+            </svg>
+          </span>
+          <span>Português</span><small class="mono">PT</small>
         </button>
+
         <button class="chip" type="button" data-lang="ptbr" aria-pressed="false" aria-label="Português do Brasil">
-          <span class="flag">🇧🇷</span><span>Português BR</span><small class="mono">PT-BR</small>
+          <span class="flag" aria-hidden="true">
+            <!-- BR -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <defs><clipPath id="cBR"><circle cx="32" cy="32" r="31"/></clipPath></defs>
+              <g clip-path="url(#cBR)">
+                <rect width="64" height="64" fill="#009c3b"/>
+                <polygon points="32,10 54,32 32,54 10,32" fill="#ffdf00"/>
+                <circle cx="32" cy="32" r="12" fill="#002776"/>
+                <path d="M20 30c6 5 18 7 24 2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </span>
+          <span>Português BR</span><small class="mono">PT-BR</small>
         </button>
+
         <button class="chip" type="button" data-lang="ko" aria-pressed="false" aria-label="한국어">
-          <span class="flag">🇰🇷</span><span>한국어</span><small class="mono">KO</small>
+          <span class="flag" aria-hidden="true">
+            <!-- KR -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <defs><clipPath id="cKR"><circle cx="32" cy="32" r="31"/></clipPath></defs>
+              <g clip-path="url(#cKR)">
+                <rect width="64" height="64" fill="#fff"/>
+                <path d="M32 20a12 12 0 1 1 0 24a6 6 0 1 0 0-12a6 6 0 1 1 0-12z" fill="#c60c30"/>
+                <path d="M32 20a6 6 0 0 0 0 12a6 6 0 0 1 0 12a12 12 0 0 0 0-24z" fill="#003478"/>
+                <g fill="#000">
+                  <rect x="10" y="14" width="10" height="2"/><rect x="10" y="18" width="10" height="2"/><rect x="10" y="22" width="10" height="2"/>
+                  <rect x="44" y="42" width="10" height="2"/><rect x="44" y="46" width="10" height="2"/><rect x="44" y="50" width="10" height="2"/>
+                  <rect x="44" y="14" width="10" height="2"/><rect x="44" y="18" width="10" height="2"/><rect x="44" y="22" width="10" height="2"/>
+                  <rect x="10" y="42" width="10" height="2"/><rect x="10" y="46" width="10" height="2"/><rect x="10" y="50" width="10" height="2"/>
+                </g>
+              </g>
+            </svg>
+          </span>
+          <span>한국어</span><small class="mono">KO</small>
         </button>
+
         <button class="chip" type="button" data-lang="ja" aria-pressed="false" aria-label="日本語">
-          <span class="flag">🇯🇵</span><span>日本語</span><small class="mono">JA</small>
+          <span class="flag" aria-hidden="true">
+            <!-- JP -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <defs><clipPath id="cJP"><circle cx="32" cy="32" r="31"/></clipPath></defs>
+              <g clip-path="url(#cJP)">
+                <rect width="64" height="64" fill="#fff"/>
+                <circle cx="32" cy="32" r="14" fill="#bc002d"/>
+              </g>
+            </svg>
+          </span>
+          <span>日本語</span><small class="mono">JA</small>
         </button>
+
         <button class="chip" type="button" data-lang="id" aria-pressed="false" aria-label="Bahasa Indonesia">
-          <span class="flag">🇮🇩</span><span>Indonesia</span><small class="mono">ID</small>
+          <span class="flag" aria-hidden="true">
+            <!-- ID -->
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <defs><clipPath id="cID"><circle cx="32" cy="32" r="31"/></clipPath></defs>
+              <g clip-path="url(#cID)">
+                <rect width="64" height="64" fill="#fff"/>
+                <rect width="64" height="32" y="0" fill="#ce1126"/>
+              </g>
+            </svg>
+          </span>
+          <span>Indonesia</span><small class="mono">ID</small>
         </button>
       </div>
 
@@ -135,13 +266,13 @@
     <!-- ===================== EN ===================== -->
     <section class="lang-section active" id="lang-en" data-lang="en">
       <header>
-        <h1>VChoice / VChronicles — Privacy Policy (Summary)</h1>
+        <h1>VChronicles — Privacy Policy (Summary)</h1>
         <p class="subtitle">Last updated: <span class="date-en"></span> — Contact: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
       </header>
 
       <section class="card">
         <p>
-          This page briefly explains how <strong>VChoice / VChronicles</strong> handles certain data to serve ads via
+          This page briefly explains how <strong>VChronicles</strong> handles certain data to serve ads via
           <strong>Google AdMob</strong> and partners, and to operate the game profile (progress, tokens, VCoins, unlocked scenarios).
           <br><strong>Important:</strong> consent for personalized ads is managed <strong>only inside the app</strong> (Settings).
         </p>
@@ -207,13 +338,13 @@
     <!-- ===================== FR ===================== -->
     <section class="lang-section" id="lang-fr" data-lang="fr">
       <header>
-        <h1>VChoice / VChronicles — Règles de confidentialité</h1>
+        <h1>VChronicles — Règles de confidentialité</h1>
         <p class="subtitle">Dernière mise à jour : <span class="date-fr"></span> — Contact : <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
       </header>
 
       <section class="card">
         <p>
-          Cette page résume comment <strong>VChoice / VChronicles</strong> traite certaines données pour afficher des publicités
+          Cette page résume comment <strong>VChronicles</strong> traite certaines données pour afficher des publicités
           via <strong>Google AdMob</strong> et partenaires, et pour faire fonctionner le profil de jeu (progression, jetons, VCoins, scénarios).
           <br><strong>Important :</strong> le choix pubs personnalisées se règle <strong>uniquement dans l’application</strong> (Paramètres).
         </p>
@@ -279,13 +410,13 @@
     <!-- ===================== DE ===================== -->
     <section class="lang-section" id="lang-de" data-lang="de">
       <header>
-        <h1>VChoice / VChronicles — Datenschutz (Kurzfassung)</h1>
+        <h1>VChronicles — Datenschutz (Kurzfassung)</h1>
         <p class="subtitle">Zuletzt aktualisiert: <span class="date-de"></span> — Kontakt: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
       </header>
 
       <section class="card">
         <p>
-          Diese Seite erklärt kurz, wie <strong>VChoice / VChronicles</strong> Daten verarbeitet, um Werbung über
+          Diese Seite erklärt kurz, wie <strong>VChronicles</strong> Daten verarbeitet, um Werbung über
           <strong>Google AdMob</strong> und Partner anzuzeigen und das Spielprofil zu betreiben (Fortschritt, Tokens, VCoins, freigeschaltete Szenarien).
           <br><strong>Wichtig:</strong> Die Zustimmung zu personalisierter Werbung wird <strong>nur in der App</strong> verwaltet (Einstellungen).
         </p>
@@ -335,13 +466,13 @@
     <!-- ===================== IT ===================== -->
     <section class="lang-section" id="lang-it" data-lang="it">
       <header>
-        <h1>VChoice / VChronicles — Privacy (Sintesi)</h1>
+        <h1>VChronicles — Privacy (Sintesi)</h1>
         <p class="subtitle">Ultimo aggiornamento: <span class="date-it"></span> — Contatto: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
       </header>
 
       <section class="card">
         <p>
-          Questa pagina riassume come <strong>VChoice / VChronicles</strong> tratta alcuni dati per mostrare annunci tramite
+          Questa pagina riassume come <strong>VChronicles</strong> tratta alcuni dati per mostrare annunci tramite
           <strong>Google AdMob</strong> e partner e per far funzionare il profilo di gioco (progressi, gettoni, VCoins, scenari sbloccati).
           <br><strong>Importante:</strong> il consenso per gli annunci personalizzati si gestisce <strong>solo nell’app</strong> (Impostazioni).
         </p>
@@ -391,13 +522,13 @@
     <!-- ===================== PT ===================== -->
     <section class="lang-section" id="lang-pt" data-lang="pt">
       <header>
-        <h1>VChoice / VChronicles — Privacidade (Resumo)</h1>
+        <h1>VChronicles — Privacidade (Resumo)</h1>
         <p class="subtitle">Última atualização: <span class="date-pt"></span> — Contacto: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
       </header>
 
       <section class="card">
         <p>
-          Esta página explica, de forma resumida, como o <strong>VChoice / VChronicles</strong> trata alguns dados
+          Esta página explica, de forma resumida, como o <strong>VChronicles</strong> trata alguns dados
           para apresentar anúncios via <strong>Google AdMob</strong> e parceiros e para operar o perfil do jogo
           (progresso, tokens, VCoins, cenários desbloqueados).
           <br><strong>Importante:</strong> o consentimento para anúncios personalizados é gerido <strong>apenas na app</strong> (Definições).
@@ -448,13 +579,13 @@
     <!-- ===================== PT-BR ===================== -->
     <section class="lang-section" id="lang-ptbr" data-lang="ptbr">
       <header>
-        <h1>VChoice / VChronicles — Privacidade (Resumo)</h1>
+        <h1>VChronicles — Privacidade (Resumo)</h1>
         <p class="subtitle">Última atualização: <span class="date-ptbr"></span> — Contato: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
       </header>
 
       <section class="card">
         <p>
-          Esta página resume como o <strong>VChoice / VChronicles</strong> trata alguns dados para exibir anúncios via
+          Esta página resume como o <strong>VChronicles</strong> trata alguns dados para exibir anúncios via
           <strong>Google AdMob</strong> e parceiros e para operar o perfil do jogo (progresso, tokens, VCoins, cenários desbloqueados).
           <br><strong>Importante:</strong> o consentimento de anúncios personalizados é gerenciado <strong>somente no app</strong> (Configurações).
         </p>
@@ -504,13 +635,13 @@
     <!-- ===================== KO ===================== -->
     <section class="lang-section" id="lang-ko" data-lang="ko">
       <header>
-        <h1>VChoice / VChronicles — 개인정보 처리방침 (요약)</h1>
+        <h1>VChronicles — 개인정보 처리방침 (요약)</h1>
         <p class="subtitle">최종 업데이트: <span class="date-ko"></span> — 문의: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
       </header>
 
       <section class="card">
         <p>
-          본 페이지는 <strong>VChoice / VChronicles</strong>가 <strong>Google AdMob</strong> 및 파트너를 통해 광고를 제공하고,
+          본 페이지는 <strong>VChronicles</strong>가 <strong>Google AdMob</strong> 및 파트너를 통해 광고를 제공하고,
           게임 프로필(진행도, 토큰, VCoins, 시나리오 잠금해제)을 운영하기 위해 어떤 데이터를 처리하는지 간단히 설명합니다.
           <br><strong>중요:</strong> 맞춤형 광고 동의는 <strong>앱 내 설정</strong>에서만 관리됩니다.
         </p>
@@ -560,13 +691,13 @@
     <!-- ===================== JA ===================== -->
     <section class="lang-section" id="lang-ja" data-lang="ja">
       <header>
-        <h1>VChoice / VChronicles — プライバシー (要約)</h1>
+        <h1>VChronicles — プライバシー (要約)</h1>
         <p class="subtitle">最終更新日: <span class="date-ja"></span> — 連絡先: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
       </header>
 
       <section class="card">
         <p>
-          このページは、<strong>VChoice / VChronicles</strong> が <strong>Google AdMob</strong> およびパートナーを通じて広告を表示し、
+          このページは、<strong>VChronicles</strong> が <strong>Google AdMob</strong> およびパートナーを通じて広告を表示し、
           ゲームプロフィール（進行状況、トークン、VCoins、シナリオ解放）を運用するために、どのようなデータを扱うかを簡単に説明します。
           <br><strong>重要:</strong> パーソナライズ広告の同意は <strong>アプリ内</strong>（設定）でのみ管理されます。
         </p>
@@ -616,13 +747,13 @@
     <!-- ===================== ID ===================== -->
     <section class="lang-section" id="lang-id" data-lang="id">
       <header>
-        <h1>VChoice / VChronicles — Privasi (Ringkasan)</h1>
+        <h1>VChronicles — Privasi (Ringkasan)</h1>
         <p class="subtitle">Pembaruan terakhir: <span class="date-id"></span> — Kontak: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
       </header>
 
       <section class="card">
         <p>
-          Halaman ini merangkum bagaimana <strong>VChoice / VChronicles</strong> memproses data tertentu untuk menayangkan iklan melalui
+          Halaman ini merangkum bagaimana <strong>VChronicles</strong> memproses data tertentu untuk menayangkan iklan melalui
           <strong>Google AdMob</strong> dan mitra, serta untuk menjalankan profil game (progres, token, VCoins, skenario terbuka).
           <br><strong>Penting:</strong> persetujuan iklan yang dipersonalisasi dikelola <strong>hanya di dalam aplikasi</strong> (Pengaturan).
         </p>
@@ -683,7 +814,7 @@
 
       // ======= CONFIG =======
       const DEFAULT_LANG = "en";
-      const STORAGE_KEY  = "vchoice_privacy_lang";
+      const STORAGE_KEY  = "vchronicles_privacy_lang";
 
       function pad(n){ return String(n).padStart(2,'0'); }
 
