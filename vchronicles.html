@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>VChoice / VChronicles — Privacy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <style>
+    :root{
+      --bg1:#2b5876;--bg2:#4e4376;
+      --card:#ffffff;--ink:#1b1f24;--muted:#5b6470;
+      --brand:#2f7cf6;--chip:#f1f5fb;--chipBorder:#e2e8f0;
+      --shadow:0 10px 30px rgba(0,0,0,.18);
+      --radius:16px;
+    }
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
+    body{
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+      min-height:100vh;display:flex;align-items:center;justify-content:center;
+      padding:24px;
+    }
+    main{
+      width:100%;max-width:980px;background:var(--card);
+      border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:22px 22px 18px;
+    }
+    h1{margin:0 0 6px;font-size:28px;letter-spacing:.2px}
+    h2{margin:22px 0 10px;font-size:20px}
+    p,li{line-height:1.55}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .subtitle{color:var(--muted);margin:0 0 14px}
+    .card{
+      background:#f6f8fb;border:1px solid #e6e9ef;border-radius:12px;
+      padding:14px 14px;margin:12px 0;
+    }
+
+    /* Language chips */
+    .langbar{
+      display:flex;flex-wrap:wrap;gap:10px;
+      align-items:center;justify-content:space-between;
+      margin:0 0 14px;
+    }
+    .chips{
+      display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+    }
+    .chip{
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--chip);
+      border:1px solid var(--chipBorder);
+      border-radius:999px;
+      padding:8px 10px;
+      cursor:pointer;
+      user-select:none;
+      transition:transform .08s ease, background .12s ease, border-color .12s ease;
+      font-size:14px;
+    }
+    .chip:active{transform:scale(.98)}
+    .chip[aria-pressed="true"]{
+      background:#e9f1ff;border-color:#b6d1ff;
+    }
+    .flag{
+      width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;
+      border-radius:999px;background:#fff;border:1px solid #e6e9ef;
+      font-size:14px;
+    }
+    .chip small{color:var(--muted);font-weight:600;letter-spacing:.2px}
+
+    .grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:22px;
+    }
+    @media (max-width:860px){.grid{grid-template-columns:1fr}}
+
+    hr{border:0;border-top:1px solid #e6e9ef;margin:20px 0}
+
+    .lang-section{display:none}
+    .lang-section.active{display:block}
+
+    .footer{
+      color:#6b7280;font-size:13px;margin-top:14px;
+      display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      background:#0b1220;color:#e7eefc;
+      padding:8px 10px;border-radius:999px;font-size:12px;
+    }
+    .pill b{font-weight:700}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}
+  </style>
+</head>
+
+<body>
+  <main>
+    <!-- Language selector -->
+    <div class="langbar">
+      <div class="chips" id="langChips">
+        <button class="chip" type="button" data-lang="en" aria-pressed="true" aria-label="English">
+          <span class="flag">🇺🇸</span><span>English</span><small class="mono">EN</small>
+        </button>
+        <button class="chip" type="button" data-lang="fr" aria-pressed="false" aria-label="Français">
+          <span class="flag">🇫🇷</span><span>Français</span><small class="mono">FR</small>
+        </button>
+        <button class="chip" type="button" data-lang="de" aria-pressed="false" aria-label="Deutsch">
+          <span class="flag">🇩🇪</span><span>Deutsch</span><small class="mono">DE</small>
+        </button>
+        <button class="chip" type="button" data-lang="it" aria-pressed="false" aria-label="Italiano">
+          <span class="flag">🇮🇹</span><span>Italiano</span><small class="mono">IT</small>
+        </button>
+        <button class="chip" type="button" data-lang="pt" aria-pressed="false" aria-label="Português">
+          <span class="flag">🇵🇹</span><span>Português</span><small class="mono">PT</small>
+        </button>
+        <button class="chip" type="button" data-lang="ptbr" aria-pressed="false" aria-label="Português do Brasil">
+          <span class="flag">🇧🇷</span><span>Português BR</span><small class="mono">PT-BR</small>
+        </button>
+        <button class="chip" type="button" data-lang="ko" aria-pressed="false" aria-label="한국어">
+          <span class="flag">🇰🇷</span><span>한국어</span><small class="mono">KO</small>
+        </button>
+        <button class="chip" type="button" data-lang="ja" aria-pressed="false" aria-label="日本語">
+          <span class="flag">🇯🇵</span><span>日本語</span><small class="mono">JA</small>
+        </button>
+        <button class="chip" type="button" data-lang="id" aria-pressed="false" aria-label="Bahasa Indonesia">
+          <span class="flag">🇮🇩</span><span>Indonesia</span><small class="mono">ID</small>
+        </button>
+      </div>
+
+      <div class="pill">
+        <span>Updated:</span> <b id="dateAny">—</b>
+        <span style="opacity:.65">•</span>
+        <span>Publisher:</span> <b>Vboldstudio</b>
+      </div>
+    </div>
+
+    <!-- ===================== EN ===================== -->
+    <section class="lang-section active" id="lang-en" data-lang="en">
+      <header>
+        <h1>VChoice / VChronicles — Privacy Policy (Summary)</h1>
+        <p class="subtitle">Last updated: <span class="date-en"></span> — Contact: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          This page briefly explains how <strong>VChoice / VChronicles</strong> handles certain data to serve ads via
+          <strong>Google AdMob</strong> and partners, and to operate the game profile (progress, tokens, VCoins, unlocked scenarios).
+          <br><strong>Important:</strong> consent for personalized ads is managed <strong>only inside the app</strong> (Settings).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Data processed (summary)</h2>
+          <ul>
+            <li><strong>Ads</strong>: device advertising ID (GAID/IDFA when available), ad delivery/measurement (impressions, clicks), anti-fraud signals.</li>
+            <li><strong>Technical</strong>: device/OS, language, app version, technical events (crashes/errors) to improve stability.</li>
+            <li><strong>Game profile</strong>: a technical profile identifier (often created automatically), VCoins/tokens balance, unlocked scenarios, preferences (e.g., language), and progress.</li>
+            <li><strong>Purchases</strong>: data required to validate in-app purchases (e.g., “No Ads” / packs / unlocks) via the store (Google/Apple).</li>
+            <li><strong>Ad consent</strong>: your allow/deny choice stored within the app.</li>
+          </ul>
+
+          <h2>2) Purposes</h2>
+          <ul>
+            <li>Serve ads and measure performance.</li>
+            <li>Prevent fraud and ensure security.</li>
+            <li>If enabled, personalize ad delivery.</li>
+            <li>Operate the game (profile, progress, purchases, unlocks).</li>
+          </ul>
+
+          <h2>3) Partners</h2>
+          <p>
+            For ads, the app uses <strong>Google AdMob</strong> and may use technical partners (e.g. <strong>Unity Ads</strong>).
+            They apply their own privacy policies:
+          </p>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google (Ads) Policy</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity Privacy Policy</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) Your choice</h2>
+          <p>
+            You can allow/deny personalized ads in the app: <em>Settings &gt; Ads</em>.
+            If denied, <strong>non-personalized</strong> ads may still be shown.
+          </p>
+
+          <h2>5) Progress & storage</h2>
+          <p>
+            The game may store information <strong>locally</strong> (preferences, session state) and/or <strong>online</strong>
+            to secure the profile and unlocks (VCoins, tokens, scenarios). This helps prevent progress loss and secures purchases.
+          </p>
+
+          <h2>6) “No Ads” purchases</h2>
+          <p>
+            If you buy “No Ads”, it disables <strong>interstitial</strong> ads. <strong>Rewarded</strong> ads (if offered)
+            may remain available because they are voluntarily triggered to obtain a reward.
+          </p>
+
+          <h2>7) Contact</h2>
+          <p>
+            For any request (access, deletion, objection, etc.): <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a>.
+          </p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== FR ===================== -->
+    <section class="lang-section" id="lang-fr" data-lang="fr">
+      <header>
+        <h1>VChoice / VChronicles — Règles de confidentialité</h1>
+        <p class="subtitle">Dernière mise à jour : <span class="date-fr"></span> — Contact : <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          Cette page résume comment <strong>VChoice / VChronicles</strong> traite certaines données pour afficher des publicités
+          via <strong>Google AdMob</strong> et partenaires, et pour faire fonctionner le profil de jeu (progression, jetons, VCoins, scénarios).
+          <br><strong>Important :</strong> le choix pubs personnalisées se règle <strong>uniquement dans l’application</strong> (Paramètres).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Données traitées (résumé)</h2>
+          <ul>
+            <li><strong>Pubs</strong> : identifiant publicitaire (GAID/IDFA si dispo), données de diffusion/mesure (impressions, clics), signaux anti-fraude.</li>
+            <li><strong>Technique</strong> : appareil/OS, langue, version app, événements (crash/erreurs) pour améliorer la stabilité.</li>
+            <li><strong>Profil de jeu</strong> : identifiant technique (souvent créé automatiquement), solde VCoins/jetons, scénarios débloqués, préférences (ex. langue), progression.</li>
+            <li><strong>Achats</strong> : données nécessaires à la validation des achats (ex. “No Ads”, packs, déblocages) via la plateforme (Google/Apple).</li>
+            <li><strong>Consentement</strong> : ton choix (autoriser/refuser la personnalisation) enregistré dans l’app.</li>
+          </ul>
+
+          <h2>2) Finalités</h2>
+          <ul>
+            <li>Afficher des publicités et mesurer les performances.</li>
+            <li>Lutter contre la fraude et assurer la sécurité.</li>
+            <li>Si autorisé, personnaliser les annonces.</li>
+            <li>Faire fonctionner le jeu (profil, progression, achats, déblocages).</li>
+          </ul>
+
+          <h2>3) Partenaires</h2>
+          <p>
+            Pour les annonces, l’app utilise <strong>Google AdMob</strong> et peut utiliser des partenaires (ex. <strong>Unity Ads</strong>).
+            Ils ont leurs propres règles :
+          </p>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Politique Google (pubs)</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Politique Unity</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) Ton choix</h2>
+          <p>
+            Tu peux autoriser/refuser la personnalisation dans l’app : <em>Paramètres &gt; Publicité</em>.
+            En cas de refus, des pubs <strong>non personnalisées</strong> peuvent être affichées.
+          </p>
+
+          <h2>5) Progression & stockage</h2>
+          <p>
+            Le jeu peut stocker des infos <strong>en local</strong> (préférences, état de partie) et/ou <strong>en ligne</strong>
+            pour sécuriser profil et déblocages (VCoins, jetons, scénarios). Objectif : éviter les pertes et sécuriser les achats.
+          </p>
+
+          <h2>6) Achat “No Ads”</h2>
+          <p>
+            “No Ads” désactive les pubs <strong>interstitielles</strong>. Les pubs <strong>récompensées</strong> (si présentes)
+            peuvent rester disponibles car elles sont déclenchées volontairement pour une récompense.
+          </p>
+
+          <h2>7) Contact</h2>
+          <p>
+            Pour toute demande : <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a>.
+          </p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== DE ===================== -->
+    <section class="lang-section" id="lang-de" data-lang="de">
+      <header>
+        <h1>VChoice / VChronicles — Datenschutz (Kurzfassung)</h1>
+        <p class="subtitle">Zuletzt aktualisiert: <span class="date-de"></span> — Kontakt: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          Diese Seite erklärt kurz, wie <strong>VChoice / VChronicles</strong> Daten verarbeitet, um Werbung über
+          <strong>Google AdMob</strong> und Partner anzuzeigen und das Spielprofil zu betreiben (Fortschritt, Tokens, VCoins, freigeschaltete Szenarien).
+          <br><strong>Wichtig:</strong> Die Zustimmung zu personalisierter Werbung wird <strong>nur in der App</strong> verwaltet (Einstellungen).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Verarbeitete Daten</h2>
+          <ul>
+            <li><strong>Werbung</strong>: Werbe-ID (GAID/IDFA, falls verfügbar), Auslieferung/Messung (Impressions, Klicks), Anti-Betrug-Signale.</li>
+            <li><strong>Technik</strong>: Gerät/OS, Sprache, App-Version, technische Ereignisse (Abstürze/Fehler).</li>
+            <li><strong>Spielprofil</strong>: technischer Profil-Identifier, VCoins/Tokens, Freischaltungen, Einstellungen (z. B. Sprache), Fortschritt.</li>
+            <li><strong>Käufe</strong>: Daten zur Validierung von In-App-Käufen über Google/Apple.</li>
+          </ul>
+
+          <h2>2) Zwecke</h2>
+          <ul>
+            <li>Werbung anzeigen und messen.</li>
+            <li>Sicherheit und Betrugsprävention.</li>
+            <li>Wenn erlaubt, personalisierte Werbung.</li>
+            <li>Spielbetrieb (Profil, Fortschritt, Käufe, Freischaltungen).</li>
+          </ul>
+
+          <h2>3) Partner</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google Werberichtlinien</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity Datenschutz</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) Deine Wahl</h2>
+          <p>Personalisierte Werbung kannst du in der App aktivieren/deaktivieren: <em>Einstellungen &gt; Werbung</em>. Ohne Zustimmung kann nicht-personalisierte Werbung angezeigt werden.</p>
+
+          <h2>5) Fortschritt & Speicherung</h2>
+          <p>Einige Daten können lokal und/oder online gespeichert werden, um Profil, Fortschritt und Freischaltungen zu sichern.</p>
+
+          <h2>6) “No Ads”</h2>
+          <p>“No Ads” deaktiviert Interstitials. Rewarded Ads können optional weiterhin verfügbar sein.</p>
+
+          <h2>7) Kontakt</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== IT ===================== -->
+    <section class="lang-section" id="lang-it" data-lang="it">
+      <header>
+        <h1>VChoice / VChronicles — Privacy (Sintesi)</h1>
+        <p class="subtitle">Ultimo aggiornamento: <span class="date-it"></span> — Contatto: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          Questa pagina riassume come <strong>VChoice / VChronicles</strong> tratta alcuni dati per mostrare annunci tramite
+          <strong>Google AdMob</strong> e partner e per far funzionare il profilo di gioco (progressi, gettoni, VCoins, scenari sbloccati).
+          <br><strong>Importante:</strong> il consenso per gli annunci personalizzati si gestisce <strong>solo nell’app</strong> (Impostazioni).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Dati trattati</h2>
+          <ul>
+            <li><strong>Annunci</strong>: ID pubblicitario (GAID/IDFA se disponibile), misurazione (impression/click), segnali antifrode.</li>
+            <li><strong>Tecnici</strong>: dispositivo/OS, lingua, versione app, crash/errori.</li>
+            <li><strong>Profilo</strong>: identificatore tecnico, saldo VCoins/gettoni, scenari sbloccati, preferenze e progressi.</li>
+            <li><strong>Acquisti</strong>: dati necessari alla convalida degli acquisti in-app (Google/Apple).</li>
+          </ul>
+
+          <h2>2) Finalità</h2>
+          <ul>
+            <li>Mostrare annunci e misurarne le prestazioni.</li>
+            <li>Sicurezza e prevenzione frodi.</li>
+            <li>Se consentito, annunci personalizzati.</li>
+            <li>Funzionamento del gioco (profilo, progressi, acquisti, sblocchi).</li>
+          </ul>
+
+          <h2>3) Partner</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google (Ads)</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity (Privacy)</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) La tua scelta</h2>
+          <p>Puoi consentire/negare gli annunci personalizzati nell’app: <em>Impostazioni &gt; Annunci</em>.</p>
+
+          <h2>5) Progressi & archiviazione</h2>
+          <p>Alcune informazioni possono essere salvate localmente e/o online per proteggere profilo e sblocchi.</p>
+
+          <h2>6) “No Ads”</h2>
+          <p>“No Ads” disattiva gli interstitial. Le rewarded ads possono restare disponibili su richiesta dell’utente.</p>
+
+          <h2>7) Contatto</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== PT ===================== -->
+    <section class="lang-section" id="lang-pt" data-lang="pt">
+      <header>
+        <h1>VChoice / VChronicles — Privacidade (Resumo)</h1>
+        <p class="subtitle">Última atualização: <span class="date-pt"></span> — Contacto: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          Esta página explica, de forma resumida, como o <strong>VChoice / VChronicles</strong> trata alguns dados
+          para apresentar anúncios via <strong>Google AdMob</strong> e parceiros e para operar o perfil do jogo
+          (progresso, tokens, VCoins, cenários desbloqueados).
+          <br><strong>Importante:</strong> o consentimento para anúncios personalizados é gerido <strong>apenas na app</strong> (Definições).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Dados tratados</h2>
+          <ul>
+            <li><strong>Anúncios</strong>: ID de publicidade (GAID/IDFA se disponível), medição (impressões/cliques), sinais anti-fraude.</li>
+            <li><strong>Técnicos</strong>: dispositivo/OS, idioma, versão da app, crashes/erros.</li>
+            <li><strong>Perfil</strong>: identificador técnico, saldo VCoins/tokens, desbloqueios, preferências, progresso.</li>
+            <li><strong>Compras</strong>: dados necessários para validar compras in-app (Google/Apple).</li>
+          </ul>
+
+          <h2>2) Finalidades</h2>
+          <ul>
+            <li>Servir anúncios e medir desempenho.</li>
+            <li>Segurança e prevenção de fraude.</li>
+            <li>Se permitido, anúncios personalizados.</li>
+            <li>Operação do jogo (perfil, progresso, compras, desbloqueios).</li>
+          </ul>
+
+          <h2>3) Parceiros</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google (Ads)</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity (Privacy)</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) A tua escolha</h2>
+          <p>Podes permitir/recusar anúncios personalizados na app: <em>Definições &gt; Anúncios</em>. Sem consentimento, podem aparecer anúncios não personalizados.</p>
+
+          <h2>5) Progresso & armazenamento</h2>
+          <p>Alguma informação pode ser guardada localmente e/ou online para proteger o perfil e os desbloqueios.</p>
+
+          <h2>6) “No Ads”</h2>
+          <p>“No Ads” desativa interstitials. Rewarded ads podem continuar disponíveis, por escolha do utilizador.</p>
+
+          <h2>7) Contacto</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== PT-BR ===================== -->
+    <section class="lang-section" id="lang-ptbr" data-lang="ptbr">
+      <header>
+        <h1>VChoice / VChronicles — Privacidade (Resumo)</h1>
+        <p class="subtitle">Última atualização: <span class="date-ptbr"></span> — Contato: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          Esta página resume como o <strong>VChoice / VChronicles</strong> trata alguns dados para exibir anúncios via
+          <strong>Google AdMob</strong> e parceiros e para operar o perfil do jogo (progresso, tokens, VCoins, cenários desbloqueados).
+          <br><strong>Importante:</strong> o consentimento de anúncios personalizados é gerenciado <strong>somente no app</strong> (Configurações).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Dados</h2>
+          <ul>
+            <li><strong>Anúncios</strong>: ID de publicidade (GAID/IDFA se disponível), métricas (impressões/cliques), sinais antifraude.</li>
+            <li><strong>Técnico</strong>: dispositivo/OS, idioma, versão do app, falhas/erros.</li>
+            <li><strong>Perfil</strong>: identificador técnico, saldo de VCoins/tokens, desbloqueios, preferências e progresso.</li>
+            <li><strong>Compras</strong>: dados necessários para validar compras no app (Google/Apple).</li>
+          </ul>
+
+          <h2>2) Finalidades</h2>
+          <ul>
+            <li>Exibir anúncios e medir desempenho.</li>
+            <li>Segurança e prevenção de fraude.</li>
+            <li>Se permitido, anúncios personalizados.</li>
+            <li>Operar o jogo (perfil, progresso, compras, desbloqueios).</li>
+          </ul>
+
+          <h2>3) Parceiros</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google (Ads)</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity (Privacy)</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) Sua escolha</h2>
+          <p>Você pode permitir/negar anúncios personalizados no app: <em>Configurações &gt; Anúncios</em>. Se negar, anúncios não personalizados podem ser exibidos.</p>
+
+          <h2>5) Progresso & armazenamento</h2>
+          <p>Algumas informações podem ser salvas localmente e/ou online para proteger perfil e desbloqueios.</p>
+
+          <h2>6) “No Ads”</h2>
+          <p>“No Ads” desativa interstitials. Rewarded ads podem continuar disponíveis quando acionadas pelo usuário.</p>
+
+          <h2>7) Contato</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== KO ===================== -->
+    <section class="lang-section" id="lang-ko" data-lang="ko">
+      <header>
+        <h1>VChoice / VChronicles — 개인정보 처리방침 (요약)</h1>
+        <p class="subtitle">최종 업데이트: <span class="date-ko"></span> — 문의: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          본 페이지는 <strong>VChoice / VChronicles</strong>가 <strong>Google AdMob</strong> 및 파트너를 통해 광고를 제공하고,
+          게임 프로필(진행도, 토큰, VCoins, 시나리오 잠금해제)을 운영하기 위해 어떤 데이터를 처리하는지 간단히 설명합니다.
+          <br><strong>중요:</strong> 맞춤형 광고 동의는 <strong>앱 내 설정</strong>에서만 관리됩니다.
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) 처리되는 데이터</h2>
+          <ul>
+            <li><strong>광고</strong>: 광고 ID(GAID/IDFA, 가능 시), 노출/클릭 등 측정, 부정행위 방지 신호.</li>
+            <li><strong>기술</strong>: 기기/OS, 언어, 앱 버전, 충돌/오류.</li>
+            <li><strong>게임 프로필</strong>: 기술적 식별자, VCoins/토큰 잔액, 잠금해제, 설정, 진행도.</li>
+            <li><strong>구매</strong>: 인앱 구매 검증을 위한 정보(스토어: Google/Apple).</li>
+          </ul>
+
+          <h2>2) 목적</h2>
+          <ul>
+            <li>광고 제공 및 성과 측정</li>
+            <li>보안 및 부정행위 방지</li>
+            <li>동의 시 맞춤형 광고</li>
+            <li>게임 운영(프로필/진행/구매/잠금해제)</li>
+          </ul>
+
+          <h2>3) 파트너</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google 광고 정책</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity 개인정보</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) 선택</h2>
+          <p>맞춤형 광고 허용/거부는 앱에서 설정합니다: <em>설정 &gt; 광고</em>. 거부 시 비맞춤형 광고가 표시될 수 있습니다.</p>
+
+          <h2>5) 저장</h2>
+          <p>일부 정보는 로컬 및/또는 온라인에 저장되어 프로필과 잠금해제를 보호할 수 있습니다.</p>
+
+          <h2>6) No Ads</h2>
+          <p>No Ads는 인터스티셜 광고를 비활성화합니다. 보상형 광고는 사용자가 원할 때만 제공될 수 있습니다.</p>
+
+          <h2>7) 문의</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== JA ===================== -->
+    <section class="lang-section" id="lang-ja" data-lang="ja">
+      <header>
+        <h1>VChoice / VChronicles — プライバシー (要約)</h1>
+        <p class="subtitle">最終更新日: <span class="date-ja"></span> — 連絡先: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          このページは、<strong>VChoice / VChronicles</strong> が <strong>Google AdMob</strong> およびパートナーを通じて広告を表示し、
+          ゲームプロフィール（進行状況、トークン、VCoins、シナリオ解放）を運用するために、どのようなデータを扱うかを簡単に説明します。
+          <br><strong>重要:</strong> パーソナライズ広告の同意は <strong>アプリ内</strong>（設定）でのみ管理されます。
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) 取り扱うデータ</h2>
+          <ul>
+            <li><strong>広告</strong>: 広告ID（GAID/IDFA、利用可能な場合）、表示/クリック等の計測、不正防止シグナル。</li>
+            <li><strong>技術</strong>: 端末/OS、言語、アプリ版本、クラッシュ/エラー。</li>
+            <li><strong>ゲームプロフィール</strong>: 技術的ID、VCoins/トークン残高、解放状況、設定、進行。</li>
+            <li><strong>購入</strong>: アプリ内課金の検証に必要な情報（Google/Apple）。</li>
+          </ul>
+
+          <h2>2) 目的</h2>
+          <ul>
+            <li>広告表示と効果測定</li>
+            <li>セキュリティと不正防止</li>
+            <li>同意がある場合のパーソナライズ</li>
+            <li>ゲーム運用（プロフィール/進行/購入/解放）</li>
+          </ul>
+
+          <h2>3) パートナー</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google 広告ポリシー</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity プライバシー</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) 選択</h2>
+          <p>パーソナライズ広告の許可/拒否はアプリ内: <em>設定 &gt; 広告</em>。拒否しても非パーソナライズ広告が表示される場合があります。</p>
+
+          <h2>5) 保存</h2>
+          <p>プロフィールと解放を保護するため、情報を端末内および/またはオンラインに保存する場合があります。</p>
+
+          <h2>6) No Ads</h2>
+          <p>No Ads はインタースティシャル広告を無効化します。リワード広告は任意で利用できる場合があります。</p>
+
+          <h2>7) 連絡先</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <!-- ===================== ID ===================== -->
+    <section class="lang-section" id="lang-id" data-lang="id">
+      <header>
+        <h1>VChoice / VChronicles — Privasi (Ringkasan)</h1>
+        <p class="subtitle">Pembaruan terakhir: <span class="date-id"></span> — Kontak: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+      </header>
+
+      <section class="card">
+        <p>
+          Halaman ini merangkum bagaimana <strong>VChoice / VChronicles</strong> memproses data tertentu untuk menayangkan iklan melalui
+          <strong>Google AdMob</strong> dan mitra, serta untuk menjalankan profil game (progres, token, VCoins, skenario terbuka).
+          <br><strong>Penting:</strong> persetujuan iklan yang dipersonalisasi dikelola <strong>hanya di dalam aplikasi</strong> (Pengaturan).
+        </p>
+      </section>
+
+      <div class="grid">
+        <section>
+          <h2>1) Data yang diproses</h2>
+          <ul>
+            <li><strong>Iklan</strong>: ID iklan perangkat (GAID/IDFA bila tersedia), pengukuran (tayangan/klik), sinyal anti-penipuan.</li>
+            <li><strong>Teknis</strong>: perangkat/OS, bahasa, versi aplikasi, crash/error.</li>
+            <li><strong>Profil game</strong>: pengenal teknis, saldo VCoins/token, pembukaan skenario, preferensi, progres.</li>
+            <li><strong>Pembelian</strong>: data untuk memvalidasi pembelian dalam aplikasi (Google/Apple).</li>
+          </ul>
+
+          <h2>2) Tujuan</h2>
+          <ul>
+            <li>Menayangkan iklan dan mengukur performa.</li>
+            <li>Keamanan dan pencegahan penipuan.</li>
+            <li>Jika diizinkan, iklan yang dipersonalisasi.</li>
+            <li>Menjalankan game (profil, progres, pembelian, pembukaan).</li>
+          </ul>
+
+          <h2>3) Mitra</h2>
+          <ul>
+            <li><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google (Ads)</a></li>
+            <li><a href="https://unity.com/legal/privacy-policy" target="_blank" rel="noopener">Unity (Privacy)</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4) Pilihan Anda</h2>
+          <p>Anda bisa mengizinkan/menolak iklan personal di aplikasi: <em>Pengaturan &gt; Iklan</em>. Jika ditolak, iklan non-personalisasi masih bisa ditampilkan.</p>
+
+          <h2>5) Progres & penyimpanan</h2>
+          <p>Beberapa informasi dapat disimpan lokal dan/atau online untuk melindungi profil dan pembukaan.</p>
+
+          <h2>6) No Ads</h2>
+          <p>No Ads menonaktifkan iklan interstisial. Iklan reward dapat tetap tersedia bila dipilih pengguna.</p>
+
+          <h2>7) Kontak</h2>
+          <p><a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></p>
+        </section>
+      </div>
+    </section>
+
+    <hr>
+
+    <footer class="footer">
+      <div>© <span id="year">—</span> <strong>Vboldstudio</strong></div>
+      <div>Contact: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></div>
+    </footer>
+  </main>
+
+  <script>
+    (function(){
+      "use strict";
+
+      // ======= CONFIG =======
+      const DEFAULT_LANG = "en";
+      const STORAGE_KEY  = "vchoice_privacy_lang";
+
+      function pad(n){ return String(n).padStart(2,'0'); }
+
+      // Dates (simple, stable)
+      const now = new Date();
+      const fr = `${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()}`;
+      const iso = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
+
+      // Put dates everywhere
+      document.getElementById("dateAny").textContent = iso;
+      document.getElementById("year").textContent = String(now.getFullYear());
+
+      const map = [
+        ["date-en", iso],
+        ["date-fr", fr],
+        ["date-de", iso],
+        ["date-it", iso],
+        ["date-pt", iso],
+        ["date-ptbr", iso],
+        ["date-ko", iso],
+        ["date-ja", iso],
+        ["date-id", iso],
+      ];
+      map.forEach(([cls,val])=>{
+        document.querySelectorAll("." + cls).forEach(el=> el.textContent = val);
+      });
+
+      function safeGet(k){
+        try { return localStorage.getItem(k); } catch(_) { return null; }
+      }
+      function safeSet(k,v){
+        try { localStorage.setItem(k, v); } catch(_) {}
+      }
+
+      const chips = Array.from(document.querySelectorAll("#langChips .chip"));
+      const sections = Array.from(document.querySelectorAll(".lang-section"));
+
+      function setLang(lang){
+        // fallback
+        if(!sections.some(s=>s.dataset.lang===lang)) lang = DEFAULT_LANG;
+
+        sections.forEach(s=>{
+          s.classList.toggle("active", s.dataset.lang === lang);
+        });
+
+        chips.forEach(btn=>{
+          const on = btn.dataset.lang === lang;
+          btn.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+
+        // html lang
+        document.documentElement.setAttribute("lang", lang === "ptbr" ? "pt-BR" : lang);
+
+        safeSet(STORAGE_KEY, lang);
+      }
+
+      chips.forEach(btn=>{
+        btn.addEventListener("click", ()=> setLang(btn.dataset.lang));
+      });
+
+      // Init from saved choice, else browser language, else default
+      let init = safeGet(STORAGE_KEY);
+
+      if(!init){
+        const nav = (navigator.language || navigator.userLanguage || "").toLowerCase();
+        if(nav.startsWith("fr")) init = "fr";
+        else if(nav.startsWith("de")) init = "de";
+        else if(nav.startsWith("it")) init = "it";
+        else if(nav === "pt-br" || nav.startsWith("pt-br")) init = "ptbr";
+        else if(nav.startsWith("pt")) init = "pt";
+        else if(nav.startsWith("ko")) init = "ko";
+        else if(nav.startsWith("ja")) init = "ja";
+        else if(nav.startsWith("id")) init = "id";
+        else init = DEFAULT_LANG;
+      }
+
+      setLang(init);
+    })();
+  </script>
+</body>
+</html>
