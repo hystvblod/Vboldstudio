@@ -144,7 +144,7 @@
     }
 
     .lang-btn{
-      min-width:44px;
+      width:46px;
       height:40px;
       border:none;
       border-radius:12px;
@@ -152,13 +152,12 @@
       border:1px solid rgba(255,255,255,0.10);
       color:#fff;
       cursor:pointer;
-      font-size:1.2rem;
-      line-height:1;
       display:flex;
       align-items:center;
       justify-content:center;
       transition:0.22s ease;
       box-shadow:0 8px 22px rgba(0,0,0,0.18);
+      padding:0;
     }
 
     .lang-btn:hover{
@@ -170,6 +169,13 @@
     .lang-btn.active{
       background:rgba(255,255,255,0.18);
       border-color:rgba(255,255,255,0.28);
+    }
+
+    .flag-emoji{
+      display:block;
+      font-size:1.35rem;
+      line-height:1;
+      font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
     }
 
     .hero{
@@ -323,33 +329,6 @@
       line-height:1.75;
     }
 
-    .cta-section{
-      padding-top:10px;
-      padding-bottom:24px;
-    }
-
-    .cta-box{
-      padding:28px;
-      border-radius:28px;
-      background:linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
-      border:1px solid rgba(255,255,255,0.12);
-      box-shadow:var(--hero-shadow);
-      text-align:center;
-    }
-
-    .cta-box h2{
-      margin:0 0 12px;
-      font-size:1.8rem;
-      letter-spacing:-0.5px;
-    }
-
-    .cta-box p{
-      margin:0 auto;
-      max-width:700px;
-      color:var(--muted);
-      line-height:1.75;
-    }
-
     footer{
       padding:30px 0 44px;
       text-align:center;
@@ -390,17 +369,12 @@
 
       .hero p,
       .section-subtitle,
-      .info-card p,
-      .cta-box p{
+      .info-card p{
         font-size:0.98rem;
       }
 
       .apps-grid{
         grid-template-columns:1fr;
-      }
-
-      .cta-box{
-        padding:24px 18px;
       }
 
       .brand-mark{
@@ -429,11 +403,11 @@
       </a>
 
       <div class="lang-switcher" aria-label="Choix de langue">
-        <button class="lang-btn" data-lang="fr" aria-label="Français" title="Français">🇫🇷</button>
-        <button class="lang-btn" data-lang="en" aria-label="English" title="English">🇺🇸</button>
-        <button class="lang-btn" data-lang="es" aria-label="Español" title="Español">🇪🇸</button>
-        <button class="lang-btn" data-lang="de" aria-label="Deutsch" title="Deutsch">🇩🇪</button>
-        <button class="lang-btn" data-lang="it" aria-label="Italiano" title="Italiano">🇮🇹</button>
+        <button class="lang-btn" data-lang="fr" aria-label="Français" title="Français"><span class="flag-emoji">🇫🇷</span></button>
+        <button class="lang-btn" data-lang="en" aria-label="English" title="English"><span class="flag-emoji">🇺🇸</span></button>
+        <button class="lang-btn" data-lang="es" aria-label="Español" title="Español"><span class="flag-emoji">🇪🇸</span></button>
+        <button class="lang-btn" data-lang="de" aria-label="Deutsch" title="Deutsch"><span class="flag-emoji">🇩🇪</span></button>
+        <button class="lang-btn" data-lang="it" aria-label="Italiano" title="Italiano"><span class="flag-emoji">🇮🇹</span></button>
       </div>
     </div>
   </header>
@@ -526,17 +500,6 @@
         </div>
       </div>
     </section>
-
-    <section class="cta-section">
-      <div class="container">
-        <div class="cta-box">
-          <h2 data-i18n="cta_title">Explore l’univers VBoldStudio</h2>
-          <p data-i18n="cta_text">
-            Découvre nos projets, nos concepts et nos expériences interactives à travers une vitrine pensée pour mettre en valeur l’identité du studio.
-          </p>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer>
@@ -562,8 +525,6 @@
         vision_text: "Créer des jeux et expériences capables de proposer une vraie personnalité, une ambiance forte et un style immédiatement reconnaissable.",
         approach_title: "Approche",
         approach_text: "Mélanger gameplay, direction artistique, narration et accessibilité pour construire des projets cohérents, ambitieux et mémorables.",
-        cta_title: "Explore l’univers VBoldStudio",
-        cta_text: "Découvre nos projets, nos concepts et nos expériences interactives à travers une vitrine pensée pour mettre en valeur l’identité du studio.",
         footer_text: "© 2026 VBoldStudio — Tous droits réservés"
       },
       en: {
@@ -581,8 +542,6 @@
         vision_text: "Create games and experiences with real personality, a strong atmosphere, and an immediately recognizable style.",
         approach_title: "Approach",
         approach_text: "Blend gameplay, art direction, storytelling, and accessibility to build coherent, ambitious, and memorable projects.",
-        cta_title: "Explore the VBoldStudio universe",
-        cta_text: "Discover our projects, concepts, and interactive experiences through a showcase designed to highlight the studio’s identity.",
         footer_text: "© 2026 VBoldStudio — All rights reserved"
       },
       es: {
@@ -600,8 +559,6 @@
         vision_text: "Crear juegos y experiencias con una verdadera personalidad, una atmósfera fuerte y un estilo inmediatamente reconocible.",
         approach_title: "Enfoque",
         approach_text: "Combinar jugabilidad, dirección artística, narrativa y accesibilidad para construir proyectos coherentes, ambiciosos y memorables.",
-        cta_title: "Explora el universo VBoldStudio",
-        cta_text: "Descubre nuestros proyectos, conceptos y experiencias interactivas a través de una vitrina pensada para destacar la identidad del estudio.",
         footer_text: "© 2026 VBoldStudio — Todos los derechos reservados"
       },
       de: {
@@ -619,8 +576,6 @@
         vision_text: "Spiele und Erlebnisse mit echter Persönlichkeit, starker Atmosphäre und einem sofort erkennbaren Stil erschaffen.",
         approach_title: "Ansatz",
         approach_text: "Gameplay, Art Direction, Erzählung und Zugänglichkeit verbinden, um stimmige, ambitionierte und einprägsame Projekte zu erschaffen.",
-        cta_title: "Entdecke das VBoldStudio-Universum",
-        cta_text: "Entdecke unsere Projekte, Konzepte und interaktiven Erlebnisse in einer Präsentation, die die Identität des Studios hervorhebt.",
         footer_text: "© 2026 VBoldStudio — Alle Rechte vorbehalten"
       },
       it: {
@@ -638,8 +593,6 @@
         vision_text: "Creare giochi ed esperienze con una vera personalità, una forte atmosfera e uno stile immediatamente riconoscibile.",
         approach_title: "Approccio",
         approach_text: "Unire gameplay, direzione artistica, narrazione e accessibilità per costruire progetti coerenti, ambiziosi e memorabili.",
-        cta_title: "Esplora l’universo VBoldStudio",
-        cta_text: "Scopri i nostri progetti, concept ed esperienze interattive attraverso una vetrina pensata per valorizzare l’identità dello studio.",
         footer_text: "© 2026 VBoldStudio — Tutti i diritti riservati"
       }
     };
