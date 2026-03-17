@@ -255,7 +255,7 @@
       border:1px solid rgba(255,255,255,0.10);
       background:linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
       box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);
-      padding:20px;
+      padding:0;
     }
 
     .app-thumb::before{
@@ -263,20 +263,22 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 25% 20%, rgba(255,255,255,0.16), transparent 22%),
-        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.08), transparent 24%);
+        radial-gradient(circle at 25% 20%, rgba(255,255,255,0.12), transparent 22%),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.06), transparent 24%);
       pointer-events:none;
+      z-index:1;
     }
 
     .app-logo{
       position:relative;
-      z-index:1;
+      z-index:0;
       width:100%;
-      max-width:150px;
-      aspect-ratio:1 / 1;
-      object-fit:contain;
+      height:100%;
+      max-width:none;
+      aspect-ratio:auto;
+      object-fit:cover;
       display:block;
-      filter:drop-shadow(0 16px 24px rgba(0,0,0,0.28));
+      filter:drop-shadow(0 16px 24px rgba(0,0,0,0.20));
     }
 
     .app-name{
@@ -460,7 +462,7 @@
           <a class="app-item" href="vchronicles.html" aria-label="Ouvrir VChronicles">
             <div class="app-box">
               <div class="app-thumb">
-                <img class="app-logo" src="assets/logos/vchronicles-log.png" alt="Logo VChronicles" />
+                <img class="app-logo" src="assets/logos/vchronicles-logo.png" alt="Logo VChronicles" />
               </div>
               <div class="app-name">VChronicles</div>
               <div class="app-sub" data-i18n="app_vchronicles_sub">Narratif • Ambiance • Expériences immersives</div>
