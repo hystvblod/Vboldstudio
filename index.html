@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VBoldStudio</title>
-  <meta name="description" content="VBoldStudio - Studio indépendant de jeux et d'expériences interactives." />
+  <meta name="description" content="VBoldStudio - Studio de créations interactives." />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17463518996"></script>
@@ -92,7 +92,7 @@
       min-height:76px;
       display:flex;
       align-items:center;
-      justify-content:space-between;
+      justify-content:center;
       gap:20px;
     }
 
@@ -126,6 +126,7 @@
     .brand-text{
       display:flex;
       flex-direction:column;
+      align-items:flex-start;
       line-height:1.05;
     }
 
@@ -134,118 +135,43 @@
       letter-spacing:0.4px;
     }
 
-    .brand-text span{
-      font-size:0.84rem;
-      color:var(--muted);
-    }
-
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .nav-links a{
-      text-decoration:none;
-      padding:10px 14px;
-      border-radius:999px;
-      color:var(--text);
-      font-size:0.95rem;
-      border:1px solid transparent;
-      transition:0.25s ease;
-      opacity:0.92;
-    }
-
-    .nav-links a:hover{
-      background:rgba(255,255,255,0.08);
-      border-color:rgba(255,255,255,0.10);
-      opacity:1;
-    }
-
     .hero{
       position:relative;
-      padding:92px 0 56px;
+      padding:90px 0 56px;
     }
 
     .hero-inner{
       display:grid;
-      grid-template-columns:1.06fr 0.94fr;
+      grid-template-columns:1fr;
       gap:30px;
       align-items:center;
     }
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 14px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.12);
-      color:var(--muted);
-      font-size:0.9rem;
-      margin-bottom:18px;
+    .hero-copy{
+      text-align:center;
+      max-width:860px;
+      margin:0 auto;
     }
 
     h1{
-      margin:0 0 16px;
-      font-size:clamp(2.8rem, 6vw, 5.2rem);
+      margin:0 0 18px;
+      font-size:clamp(3rem, 7vw, 5.6rem);
       line-height:0.95;
-      letter-spacing:-1.7px;
+      letter-spacing:-1.9px;
       text-shadow:0 10px 30px rgba(0,0,0,0.35);
     }
 
     .hero p{
-      margin:0;
-      max-width:690px;
+      margin:0 auto;
+      max-width:760px;
       color:var(--muted);
       font-size:1.08rem;
       line-height:1.75;
     }
 
-    .hero-actions{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-top:30px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:52px;
-      padding:0 20px;
-      border-radius:16px;
-      text-decoration:none;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,0.14);
-      transition:0.25s ease;
-      box-shadow:var(--card-shadow);
-    }
-
-    .btn-primary{
-      background:linear-gradient(135deg, rgba(255,255,255,0.22), rgba(255,255,255,0.10));
-    }
-
-    .btn-primary:hover{
-      transform:translateY(-2px);
-      background:linear-gradient(135deg, rgba(255,255,255,0.28), rgba(255,255,255,0.14));
-    }
-
-    .btn-secondary{
-      background:rgba(255,255,255,0.05);
-    }
-
-    .btn-secondary:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,0.10);
-    }
-
     .hero-visual{
       position:relative;
-      min-height:430px;
+      min-height:260px;
       border-radius:var(--radius-xl);
       overflow:hidden;
       border:1px solid rgba(255,255,255,0.12);
@@ -285,23 +211,14 @@
       height:100%;
       padding:26px;
       display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-
-    .mini-badge{
-      align-self:flex-start;
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:0.82rem;
-      border:1px solid rgba(255,255,255,0.12);
-      background:rgba(0,0,0,0.22);
+      align-items:flex-end;
     }
 
     .floating-panels{
       display:grid;
+      grid-template-columns:repeat(3, 1fr);
       gap:14px;
-      margin-top:auto;
+      width:100%;
     }
 
     .floating-card{
@@ -332,13 +249,15 @@
       margin:0 0 10px;
       font-size:2rem;
       letter-spacing:-0.5px;
+      text-align:center;
     }
 
     .section-subtitle{
-      margin:0 0 30px;
+      margin:0 auto 30px;
       max-width:760px;
       color:var(--muted);
       line-height:1.75;
+      text-align:center;
     }
 
     .apps-grid{
@@ -465,7 +384,7 @@
     }
 
     .cta-box p{
-      margin:0 auto 22px;
+      margin:0 auto;
       max-width:700px;
       color:var(--muted);
       line-height:1.75;
@@ -479,15 +398,15 @@
     }
 
     @media (max-width: 1024px){
-      .hero-inner{
-        grid-template-columns:1fr;
-      }
-
       .apps-grid{
         grid-template-columns:repeat(2, 1fr);
       }
 
       .studio-grid{
+        grid-template-columns:1fr;
+      }
+
+      .floating-panels{
         grid-template-columns:1fr;
       }
 
@@ -497,23 +416,16 @@
     }
 
     @media (max-width: 640px){
-      .nav{
-        min-height:auto;
-        padding:14px 0;
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .nav-links{
-        width:100%;
-      }
-
       .hero{
         padding:64px 0 40px;
       }
 
+      .nav{
+        min-height:70px;
+      }
+
       h1{
-        font-size:2.8rem;
+        font-size:2.9rem;
       }
 
       .hero p,
@@ -523,20 +435,22 @@
         font-size:0.98rem;
       }
 
-      .hero-actions{
-        flex-direction:column;
-      }
-
-      .btn{
-        width:100%;
-      }
-
       .apps-grid{
         grid-template-columns:1fr;
       }
 
       .cta-box{
         padding:24px 18px;
+      }
+
+      .brand-mark{
+        width:42px;
+        height:42px;
+        flex:0 0 42px;
+      }
+
+      .brand-text strong{
+        font-size:1rem;
       }
     }
   </style>
@@ -551,14 +465,8 @@
         </div>
         <div class="brand-text">
           <strong>VBoldStudio</strong>
-          <span>Indie Game Studio</span>
         </div>
       </a>
-
-      <nav class="nav-links">
-        <a href="#apps">Projets</a>
-        <a href="#studio">Studio</a>
-      </nav>
     </div>
   </header>
 
@@ -566,23 +474,15 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <div class="eyebrow">Jeux • Univers • Expériences interactives</div>
           <h1>VBoldStudio</h1>
           <p>
-            Studio indépendant dédié à la création de jeux, de concepts originaux et d’univers interactifs.
+            Studio dédié à la création de jeux, de concepts originaux et d’univers interactifs.
             Explore nos projets et découvre une identité tournée vers l’ambiance, le gameplay et des expériences marquantes.
           </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#apps">Découvrir les projets</a>
-            <a class="btn btn-secondary" href="#studio">Découvrir le studio</a>
-          </div>
         </div>
 
         <div class="hero-visual">
           <div class="hero-visual-content">
-            <div class="mini-badge">Création indépendante</div>
-
             <div class="floating-panels">
               <div class="floating-card">
                 <strong>Univers variés</strong>
@@ -606,7 +506,7 @@
       <div class="container">
         <h2 class="section-title">Nos projets</h2>
         <p class="section-subtitle">
-          Clique sur un projet pour accéder à sa page. Les carreaux utilisent maintenant des logos dans
+          Clique sur un projet pour accéder à sa page. Les carreaux utilisent des logos dans
           <strong>assets/logos/</strong> pour un rendu plus propre et plus studio.
         </p>
 
@@ -690,7 +590,6 @@
             Découvre nos projets, nos concepts et nos expériences interactives à travers une vitrine pensée
             pour mettre en valeur l’identité du studio.
           </p>
-          <a class="btn btn-primary" href="#apps">Voir les projets</a>
         </div>
       </div>
     </section>
