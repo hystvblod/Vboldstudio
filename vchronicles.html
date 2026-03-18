@@ -6,264 +6,559 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex" />
   <style>
+
     :root{
-      --bg1:#2b5876;--bg2:#4e4376;
-      --card:#ffffff;--ink:#1b1f24;--muted:#5b6470;
-      --brand:#2f7cf6;--chip:#f1f5fb;--chipBorder:#e2e8f0;
-      --shadow:0 10px 30px rgba(0,0,0,.18);
-      --radius:16px;
+      --bg-1:#090b16;
+      --bg-2:#12182c;
+      --bg-3:#2c1845;
+      --bg-4:#5b224c;
+
+      --text:#f8f9ff;
+      --muted:rgba(255,255,255,0.74);
+      --line:rgba(255,255,255,0.10);
+
+      --doc-bg:#ffffff;
+      --doc-ink:#1b1f24;
+      --doc-muted:#5b6470;
+      --doc-line:#e6e9ef;
+      --doc-card:#f6f8fb;
+      --brand:#2f7cf6;
+
+      --card-shadow:0 18px 50px rgba(0,0,0,0.32);
+      --doc-shadow:0 26px 70px rgba(0,0,0,0.28);
+
+      --radius-xl:30px;
+      --radius-lg:24px;
+      --radius-md:18px;
+
+      --max-width:1160px;
     }
-    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink)}
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    html,body{margin:0;padding:0}
     body{
-      background:linear-gradient(135deg,var(--bg1),var(--bg2));
-      min-height:100vh;display:flex;align-items:center;justify-content:center;
+      font-family:"Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 15%, rgba(88,130,255,0.22), transparent 24%),
+        radial-gradient(circle at 85% 20%, rgba(255,90,180,0.16), transparent 22%),
+        radial-gradient(circle at 50% 85%, rgba(0,220,255,0.09), transparent 24%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2) 38%, var(--bg-3) 68%, var(--bg-4));
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:0.16;
+      background:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size:38px 38px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.08));
+    }
+
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max-width), calc(100% - 32px)); margin:0 auto}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:30;
+      background:rgba(8,10,20,0.34);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand-mark{
+      width:46px;
+      height:46px;
+      border-radius:15px;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(255,255,255,0.14);
+      background:linear-gradient(135deg, rgba(255,255,255,0.20), rgba(255,255,255,0.06));
+      box-shadow:0 10px 28px rgba(0,0,0,0.22);
+      overflow:hidden;
+      flex:0 0 46px;
+    }
+
+    .brand-mark img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .brand-text strong{
+      display:block;
+      font-size:1.06rem;
+      letter-spacing:0.4px;
+    }
+
+    main{padding:0 0 48px}
+
+    .hero{
+      padding:56px 0 18px;
+    }
+
+    .hero-card{
+      padding:34px;
+      border-radius:30px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:var(--card-shadow);
+      backdrop-filter:blur(10px);
+    }
+
+    .app-top{
+      display:grid;
+      grid-template-columns:160px 1fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .app-logo-shell{
+      width:160px;
+      aspect-ratio:1/1;
+      border-radius:32px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.14);
+      background:linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.08), 0 14px 34px rgba(0,0,0,0.18);
+    }
+
+    .app-logo-shell img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .app-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.12);
+      color:rgba(255,255,255,0.84);
+      font-size:0.88rem;
+      margin-bottom:12px;
+    }
+
+    .hero-title{
+      margin:0 0 12px;
+      font-size:clamp(2.2rem, 5vw, 4rem);
+      line-height:0.95;
+      letter-spacing:-1.4px;
+      text-shadow:0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .hero-desc{
+      margin:0;
+      max-width:760px;
+      color:var(--muted);
+      font-size:1.04rem;
+      line-height:1.75;
+    }
+
+    .hero-lang{
+      display:none;
+    }
+
+    .shots{
+      padding:10px 0 0;
+    }
+
+    .shots-head{
+      margin:0 0 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    .shots-title{
+      margin:0;
+      font-size:1.32rem;
+      letter-spacing:-0.4px;
+    }
+
+    .shots-note{
+      color:var(--muted);
+      font-size:0.94rem;
+    }
+
+    .shots-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+    }
+
+    .shot-card{
+      padding:14px;
+      border-radius:24px;
+      background:rgba(255,255,255,0.07);
+      border:1px solid rgba(255,255,255,0.10);
+      box-shadow:var(--card-shadow);
+    }
+
+    .shot-frame{
+      position:relative;
+      aspect-ratio:10/18;
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.12);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.16), transparent 24%),
+        linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .shot-frame img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .shot-placeholder{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:18px;
+      text-align:center;
+      color:rgba(255,255,255,0.84);
+    }
+
+    .shot-placeholder strong{
+      font-size:1.02rem;
+      letter-spacing:0.2px;
+    }
+
+    .shot-placeholder span{
+      font-size:0.86rem;
+      color:rgba(255,255,255,0.64);
+      line-height:1.5;
+    }
+
+    .shot-meta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:12px;
+      color:rgba(255,255,255,0.78);
+      font-size:0.88rem;
+    }
+
+    .shot-badge{
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.10);
+      font-size:0.78rem;
+      letter-spacing:0.2px;
+    }
+
+    .policy-shell{
+      margin-top:26px;
+      background:var(--doc-bg);
+      color:var(--doc-ink);
+      border-radius:30px;
+      box-shadow:var(--doc-shadow);
       padding:24px;
     }
-    main{
-      width:100%;max-width:980px;background:var(--card);
-      border-radius:var(--radius);box-shadow:var(--shadow);
-      padding:22px 22px 18px;
-    }
-    h1{margin:0 0 6px;font-size:28px;letter-spacing:.2px}
-    h2{margin:22px 0 10px;font-size:20px}
-    p,li{line-height:1.55}
-    a{color:var(--brand);text-decoration:none}
-    a:hover{text-decoration:underline}
-    .subtitle{color:var(--muted);margin:0 0 14px}
-    .card{
-      background:#f6f8fb;border:1px solid #e6e9ef;border-radius:12px;
-      padding:14px 14px;margin:12px 0;
-    }
 
-    /* Language chips */
     .langbar{
-      display:flex;flex-wrap:wrap;gap:10px;
-      align-items:center;justify-content:space-between;
-      margin:0 0 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      margin:0 0 18px;
     }
-    .chips{
-      display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+
+    .chips,.lang-switcher{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
     }
-    .chip{
-      display:inline-flex;align-items:center;gap:8px;
-      background:var(--chip);
-      border:1px solid var(--chipBorder);
-      border-radius:999px;
-      padding:8px 10px;
+
+    .chip,.lang-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:40px;
+      border-radius:12px;
+      border:1px solid rgba(18,24,44,0.10);
+      background:#f8faff;
+      color:#122030;
+      padding:0 12px;
       cursor:pointer;
-      user-select:none;
-      transition:transform .08s ease, background .12s ease, border-color .12s ease;
+      transition:0.22s ease;
+      box-shadow:0 8px 22px rgba(0,0,0,0.06);
       font-size:14px;
-    }
-    .chip:active{transform:scale(.98)}
-    .chip[aria-pressed="true"]{
-      background:#e9f1ff;border-color:#b6d1ff;
+      font-family:inherit;
     }
 
-    /* SVG flags */
-    .flag{
-      width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;
-      border-radius:999px;background:#fff;border:1px solid #e6e9ef;
+    .lang-btn{width:46px;height:40px;padding:0}
+
+    .chip:hover,.lang-btn:hover{
+      transform:translateY(-2px);
+      background:#eef4ff;
+      border-color:rgba(47,124,246,0.22);
+    }
+
+    .chip[aria-pressed="true"], .lang-btn.active{
+      background:#eaf1ff;
+      border-color:rgba(47,124,246,0.30);
+    }
+
+    .flag,.flagSvg{
+      width:22px;
+      height:22px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:999px;
       overflow:hidden;
+      border:1px solid #e6e9ef;
+      background:#fff;
+      flex:0 0 22px;
     }
-    .flag svg{width:100%;height:100%;display:block}
 
-    .chip small{color:var(--muted);font-weight:600;letter-spacing:.2px}
-
-    .grid{
-      display:grid;grid-template-columns:1fr 1fr;gap:22px;
+    .flag svg, .flagSvg svg, .lang-btn svg{
+      width:100%;
+      height:100%;
+      display:block;
     }
-    @media (max-width:860px){.grid{grid-template-columns:1fr}}
 
-    hr{border:0;border-top:1px solid #e6e9ef;margin:20px 0}
+    .lang-btn svg{
+      width:24px;
+      height:18px;
+      display:block;
+      border-radius:3px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    .mono{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#0b1220;
+      color:#e7eefc;
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+    }
+
+    .grid,.split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
+
+    h1,h2,h3{color:var(--doc-ink)}
+    h1{margin:0 0 8px;font-size:28px}
+    h2{margin:24px 0 10px;font-size:20px}
+    p,li{line-height:1.6}
+    .subtitle{color:var(--doc-muted);margin:0 0 16px}
+    .card{
+      background:var(--doc-card);
+      border:1px solid var(--doc-line);
+      border-radius:16px;
+      padding:16px;
+      margin:14px 0;
+    }
+    .mail,a.mail{
+      color:var(--brand);
+    }
+    .footer{
+      color:#6b7280;
+      font-size:13px;
+      margin-top:18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    hr{
+      border:0;
+      border-top:1px solid var(--doc-line);
+      margin:24px 0;
+    }
 
     .lang-section{display:none}
     .lang-section.active{display:block}
+    .hero-lang.active{display:block}
 
-    .footer{
-      color:#6b7280;font-size:13px;margin-top:14px;
-      display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+    @media (max-width:1024px){
+      .shots-grid{grid-template-columns:1fr 1fr}
     }
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      background:#0b1220;color:#e7eefc;
-      padding:8px 10px;border-radius:999px;font-size:12px;
+
+    @media (max-width:860px){
+      .grid,.split{grid-template-columns:1fr}
+      .app-top{grid-template-columns:1fr; text-align:center}
+      .app-logo-shell{margin:0 auto}
+      .hero-desc{margin:0 auto}
     }
-    .pill b{font-weight:700}
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace}
+
+    @media (max-width:640px){
+      .container{width:min(var(--max-width), calc(100% - 20px))}
+      .nav{min-height:auto;padding:14px 0}
+      .hero{padding:38px 0 10px}
+      .hero-card{padding:22px}
+      .policy-shell{padding:18px}
+      .shots-grid{grid-template-columns:1fr}
+    }
+
   </style>
 </head>
 
 <body>
-  <main>
-    <!-- Language selector -->
-    <div class="langbar">
-      <div class="chips" id="langChips">
-        <button class="chip" type="button" data-lang="en" aria-pressed="true" aria-label="English">
-          <span class="flag" aria-hidden="true">
-            <!-- US -->
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-              <defs><clipPath id="cUS"><circle cx="32" cy="32" r="31"/></clipPath></defs>
-              <g clip-path="url(#cUS)">
-                <rect width="64" height="64" fill="#fff"/>
-                <g fill="#b22234">
-                  <rect y="0" width="64" height="5"/>
-                  <rect y="10" width="64" height="5"/>
-                  <rect y="20" width="64" height="5"/>
-                  <rect y="30" width="64" height="5"/>
-                  <rect y="40" width="64" height="5"/>
-                  <rect y="50" width="64" height="5"/>
-                  <rect y="60" width="64" height="4"/>
-                </g>
-                <rect width="28" height="24" fill="#3c3b6e"/>
-                <g fill="#fff">
-                  <circle cx="4" cy="4" r="1.1"/><circle cx="10" cy="4" r="1.1"/><circle cx="16" cy="4" r="1.1"/><circle cx="22" cy="4" r="1.1"/>
-                  <circle cx="7" cy="8" r="1.1"/><circle cx="13" cy="8" r="1.1"/><circle cx="19" cy="8" r="1.1"/><circle cx="25" cy="8" r="1.1"/>
-                  <circle cx="4" cy="12" r="1.1"/><circle cx="10" cy="12" r="1.1"/><circle cx="16" cy="12" r="1.1"/><circle cx="22" cy="12" r="1.1"/>
-                  <circle cx="7" cy="16" r="1.1"/><circle cx="13" cy="16" r="1.1"/><circle cx="19" cy="16" r="1.1"/><circle cx="25" cy="16" r="1.1"/>
-                  <circle cx="4" cy="20" r="1.1"/><circle cx="10" cy="20" r="1.1"/><circle cx="16" cy="20" r="1.1"/><circle cx="22" cy="20" r="1.1"/>
-                </g>
-              </g>
-            </svg>
-          </span>
-          <span>English</span><small class="mono">EN</small>
-        </button>
 
-        <button class="chip" type="button" data-lang="fr" aria-pressed="false" aria-label="Français">
-          <span class="flag" aria-hidden="true">
-            <!-- FR -->
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-              <defs><clipPath id="cFR"><circle cx="32" cy="32" r="31"/></clipPath></defs>
-              <g clip-path="url(#cFR)">
-                <rect width="64" height="64" fill="#fff"/>
-                <rect width="21.33" height="64" x="0" fill="#0055a4"/>
-                <rect width="21.33" height="64" x="42.67" fill="#ef4135"/>
-              </g>
-            </svg>
-          </span>
-          <span>Français</span><small class="mono">FR</small>
-        </button>
-
-        <button class="chip" type="button" data-lang="de" aria-pressed="false" aria-label="Deutsch">
-          <span class="flag" aria-hidden="true">
-            <!-- DE -->
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-              <defs><clipPath id="cDE"><circle cx="32" cy="32" r="31"/></clipPath></defs>
-              <g clip-path="url(#cDE)">
-                <rect width="64" height="64" fill="#ffce00"/>
-                <rect width="64" height="42.66" y="0" fill="#dd0000"/>
-                <rect width="64" height="21.33" y="0" fill="#000"/>
-              </g>
-            </svg>
-          </span>
-          <span>Deutsch</span><small class="mono">DE</small>
-        </button>
-
-        <button class="chip" type="button" data-lang="it" aria-pressed="false" aria-label="Italiano">
-          <span class="flag" aria-hidden="true">
-            <!-- IT -->
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-              <defs><clipPath id="cIT"><circle cx="32" cy="32" r="31"/></clipPath></defs>
-              <g clip-path="url(#cIT)">
-                <rect width="64" height="64" fill="#fff"/>
-                <rect width="21.33" height="64" x="0" fill="#009246"/>
-                <rect width="21.33" height="64" x="42.67" fill="#ce2b37"/>
-              </g>
-            </svg>
-          </span>
-          <span>Italiano</span><small class="mono">IT</small>
-        </button>
-
-        <button class="chip" type="button" data-lang="pt" aria-pressed="false" aria-label="Português">
-          <span class="flag" aria-hidden="true">
-            <!-- PT -->
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-              <defs><clipPath id="cPT"><circle cx="32" cy="32" r="31"/></clipPath></defs>
-              <g clip-path="url(#cPT)">
-                <rect width="64" height="64" fill="#c8102e"/>
-                <rect width="26" height="64" x="0" fill="#006600"/>
-                <circle cx="26" cy="32" r="10" fill="#ffcc00"/>
-                <circle cx="26" cy="32" r="6.8" fill="#fff"/>
-              </g>
-            </svg>
-          </span>
-          <span>Português</span><small class="mono">PT</small>
-        </button>
-
-        <button class="chip" type="button" data-lang="ptbr" aria-pressed="false" aria-label="Português do Brasil">
-          <span class="flag" aria-hidden="true">
-            <!-- BR -->
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-              <defs><clipPath id="cBR"><circle cx="32" cy="32" r="31"/></clipPath></defs>
-              <g clip-path="url(#cBR)">
-                <rect width="64" height="64" fill="#009c3b"/>
-                <polygon points="32,10 54,32 32,54 10,32" fill="#ffdf00"/>
-                <circle cx="32" cy="32" r="12" fill="#002776"/>
-                <path d="M20 30c6 5 18 7 24 2" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
-              </g>
-            </svg>
-          </span>
-          <span>Português BR</span><small class="mono">PT-BR</small>
-        </button>
-
-        <button class="chip" type="button" data-lang="ko" aria-pressed="false" aria-label="한국어">
-          <span class="flag" aria-hidden="true">
-            <!-- KR -->
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-              <defs><clipPath id="cKR"><circle cx="32" cy="32" r="31"/></clipPath></defs>
-              <g clip-path="url(#cKR)">
-                <rect width="64" height="64" fill="#fff"/>
-                <path d="M32 20a12 12 0 1 1 0 24a6 6 0 1 0 0-12a6 6 0 1 1 0-12z" fill="#c60c30"/>
-                <path d="M32 20a6 6 0 0 0 0 12a6 6 0 0 1 0 12a12 12 0 0 0 0-24z" fill="#003478"/>
-                <g fill="#000">
-                  <rect x="10" y="14" width="10" height="2"/><rect x="10" y="18" width="10" height="2"/><rect x="10" y="22" width="10" height="2"/>
-                  <rect x="44" y="42" width="10" height="2"/><rect x="44" y="46" width="10" height="2"/><rect x="44" y="50" width="10" height="2"/>
-                  <rect x="44" y="14" width="10" height="2"/><rect x="44" y="18" width="10" height="2"/><rect x="44" y="22" width="10" height="2"/>
-                  <rect x="10" y="42" width="10" height="2"/><rect x="10" y="46" width="10" height="2"/><rect x="10" y="50" width="10" height="2"/>
-                </g>
-              </g>
-            </svg>
-          </span>
-          <span>한국어</span><small class="mono">KO</small>
-        </button>
-
-        <button class="chip" type="button" data-lang="ja" aria-pressed="false" aria-label="日本語">
-          <span class="flag" aria-hidden="true">
-            <!-- JP -->
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-              <defs><clipPath id="cJP"><circle cx="32" cy="32" r="31"/></clipPath></defs>
-              <g clip-path="url(#cJP)">
-                <rect width="64" height="64" fill="#fff"/>
-                <circle cx="32" cy="32" r="14" fill="#bc002d"/>
-              </g>
-            </svg>
-          </span>
-          <span>日本語</span><small class="mono">JA</small>
-        </button>
-
-        <button class="chip" type="button" data-lang="id" aria-pressed="false" aria-label="Bahasa Indonesia">
-          <span class="flag" aria-hidden="true">
-            <!-- ID -->
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-              <defs><clipPath id="cID"><circle cx="32" cy="32" r="31"/></clipPath></defs>
-              <g clip-path="url(#cID)">
-                <rect width="64" height="64" fill="#fff"/>
-                <rect width="64" height="32" y="0" fill="#ce1126"/>
-              </g>
-            </svg>
-          </span>
-          <span>Indonesia</span><small class="mono">ID</small>
-        </button>
-      </div>
-
-      <div class="pill">
-        <span>Updated:</span> <b id="dateAny">—</b>
-        <span style="opacity:.65">•</span>
-        <span>Publisher:</span> <b>Vboldstudio</b>
-      </div>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="Retour à l'accueil VBoldStudio">
+        <div class="brand-mark">
+          <img src="assets/logos/vboldstudio-logo.png" alt="Logo VBoldStudio" />
+        </div>
+        <div class="brand-text">
+          <strong>VBoldStudio</strong>
+        </div>
+      </a>
     </div>
+  </header>
 
-    <!-- ===================== EN ===================== -->
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="app-top">
+            <div class="app-logo-shell">
+              <img src="assets/logos/vchronicles-logo.png" alt="Logo VChronicles" />
+            </div>
+
+            <div>
+              <div class="app-kicker">Privacy Policy</div>
+              <h1 class="hero-title">VChronicles</h1>
+              <div class="hero-lang lang-section active" data-lang="en"><p class="hero-desc">A narrative horror experience built around choices, tension, atmosphere, and immersive story-driven progression.</p></div><div class="hero-lang lang-section" data-lang="fr"><p class="hero-desc">Une expérience narrative horrifique centrée sur les choix, la tension, l’ambiance et une progression immersive.</p></div><div class="hero-lang lang-section" data-lang="de"><p class="hero-desc">Ein narratives Horror-Erlebnis rund um Entscheidungen, Spannung, Atmosphäre und eine immersive Entwicklung.</p></div><div class="hero-lang lang-section" data-lang="it"><p class="hero-desc">Un’esperienza narrativa horror basata su scelte, tensione, atmosfera e progressione immersiva.</p></div><div class="hero-lang lang-section" data-lang="pt"><p class="hero-desc">Uma experiência narrativa de terror centrada em escolhas, tensão, atmosfera e progressão imersiva.</p></div><div class="hero-lang lang-section" data-lang="ptbr"><p class="hero-desc">Uma experiência narrativa de terror focada em escolhas, tensão, atmosfera e progressão imersiva.</p></div><div class="hero-lang lang-section" data-lang="ko"><p class="hero-desc">선택, 긴장감, 분위기, 몰입형 전개를 중심으로 한 내러티브 호러 경험입니다.</p></div><div class="hero-lang lang-section" data-lang="ja"><p class="hero-desc">選択、緊張感、雰囲気、没入感のある進行を軸にしたナラティブホラー体験です。</p></div><div class="hero-lang lang-section" data-lang="id"><p class="hero-desc">Pengalaman horor naratif yang berfokus pada pilihan, ketegangan, atmosfer, dan progresi yang imersif.</p></div>
+            </div>
+          </div>
+
+          <section class="shots">
+            <div class="shots-head">
+              <h2 class="shots-title">Visuels de la page</h2>
+              <div class="shots-note">3 emplacements prêts à recevoir tes captures</div>
+            </div>
+
+            <div class="shots-grid">
+              
+              <article class="shot-card">
+                <div class="shot-frame">
+                  <img src="assets/screenshots/vchronicles-01.webp" alt="VChronicles screenshot 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="shot-placeholder" style="display:none;">
+                    <strong>Screenshot 01</strong>
+                    <span>Ajoute ton image ici<br>assets/screenshots/vchronicles-01.webp</span>
+                  </div>
+                </div>
+                <div class="shot-meta">
+                  <span>VChronicles</span>
+                  <span class="shot-badge">01</span>
+                </div>
+              </article>
+              <article class="shot-card">
+                <div class="shot-frame">
+                  <img src="assets/screenshots/vchronicles-02.webp" alt="VChronicles screenshot 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="shot-placeholder" style="display:none;">
+                    <strong>Screenshot 02</strong>
+                    <span>Ajoute ton image ici<br>assets/screenshots/vchronicles-02.webp</span>
+                  </div>
+                </div>
+                <div class="shot-meta">
+                  <span>VChronicles</span>
+                  <span class="shot-badge">02</span>
+                </div>
+              </article>
+              <article class="shot-card">
+                <div class="shot-frame">
+                  <img src="assets/screenshots/vchronicles-03.webp" alt="VChronicles screenshot 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <div class="shot-placeholder" style="display:none;">
+                    <strong>Screenshot 03</strong>
+                    <span>Ajoute ton image ici<br>assets/screenshots/vchronicles-03.webp</span>
+                  </div>
+                </div>
+                <div class="shot-meta">
+                  <span>VChronicles</span>
+                  <span class="shot-badge">03</span>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="policy-shell">
+        <div class="langbar">
+          <div class="chips" id="langChips">
+            
+            <button class="lang-btn active" type="button" data-lang="en" aria-label="English" title="English"><svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#B22234"/><g fill="#FFFFFF"><rect y="2.307" width="60" height="2.307"/><rect y="6.923" width="60" height="2.307"/><rect y="11.538" width="60" height="2.307"/><rect y="16.153" width="60" height="2.307"/><rect y="20.769" width="60" height="2.307"/><rect y="25.384" width="60" height="2.307"/></g><rect width="24" height="16.154" fill="#3C3B6E"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="fr" aria-label="Français" title="Français"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" x="0" fill="#0055A4"/><rect width="1" height="2" x="1" fill="#FFFFFF"/><rect width="1" height="2" x="2" fill="#EF4135"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="de" aria-label="Deutsch" title="Deutsch"><svg viewBox="0 0 5 3" xmlns="http://www.w3.org/2000/svg"><rect width="5" height="1" fill="#000000"/><rect width="5" height="1" y="1" fill="#DD0000"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="it" aria-label="Italiano" title="Italiano"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" x="0" fill="#009246"/><rect width="1" height="2" x="1" fill="#FFFFFF"/><rect width="1" height="2" x="2" fill="#CE2B37"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="pt" aria-label="Português" title="Português"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="10" height="24" fill="#166534"/><rect width="14" height="24" x="10" fill="#dc2626"/><circle cx="10" cy="12" r="4.2" fill="#f59e0b" opacity=".95"/><circle cx="10" cy="12" r="2.2" fill="#ffffff" opacity=".95"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="ptbr" aria-label="Português BR" title="Português BR"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" fill="#16a34a"/><path d="M12 4 L20 12 L12 20 L4 12 Z" fill="#f59e0b"/><circle cx="12" cy="12" r="4.2" fill="#1e3a8a"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="ko" aria-label="한국어" title="한국어"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" fill="#ffffff"/><path d="M12 7.2a4.8 4.8 0 0 1 4.2 2.4c-1.2 1.4-2.7 2.1-4.2 2.1s-3-.7-4.2-2.1A4.8 4.8 0 0 1 12 7.2Z" fill="#dc2626"/><path d="M12 16.8a4.8 4.8 0 0 1-4.2-2.4c1.2-1.4 2.7-2.1 4.2-2.1s3 0.7 4.2 2.1A4.8 4.8 0 0 1 12 16.8Z" fill="#2563eb"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="ja" aria-label="日本語" title="日本語"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" fill="#ffffff"/><circle cx="12" cy="12" r="5.2" fill="#dc2626"/></svg></button>
+            <button class="lang-btn" type="button" data-lang="id" aria-label="Indonesia" title="Indonesia"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="12" fill="#dc2626"/><rect width="24" height="12" y="12" fill="#ffffff"/></svg></button>
+          
+          </div>
+
+          <div class="pill">
+            <span>Publisher:</span> <b>Vboldstudio</b>
+          </div>
+        </div>
+
+<!-- ===================== EN ===================== -->
     <section class="lang-section active" id="lang-en" data-lang="en">
       <header>
         <h1>VChronicles — Privacy Policy (Summary)</h1>
@@ -806,6 +1101,9 @@
       <div>© <span id="year">—</span> <strong>Vboldstudio</strong></div>
       <div>Contact: <a class="mail" href="mailto:help.vboldstudio@gmail.com">help.vboldstudio@gmail.com</a></div>
     </footer>
+
+      </section>
+    </div>
   </main>
 
   <script>
@@ -849,7 +1147,7 @@
         try { localStorage.setItem(k, v); } catch(_) {}
       }
 
-      const chips = Array.from(document.querySelectorAll("#langChips .chip"));
+      const chips = Array.from(document.querySelectorAll("#langChips [data-lang]"));
       const sections = Array.from(document.querySelectorAll(".lang-section"));
 
       function setLang(lang){
