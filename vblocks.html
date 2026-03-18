@@ -78,15 +78,58 @@
       min-height:76px;
       display:flex;
       align-items:center;
-      justify-content:flex-start;
+      justify-content:space-between;
       gap:16px;
+      flex-wrap:nowrap;
+    }
+
+    .nav-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      margin-left:auto;
       flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .back-home{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,0.14);
+      background:linear-gradient(135deg, rgba(255,255,255,0.20), rgba(255,255,255,0.06));
+      box-shadow:0 10px 28px rgba(0,0,0,0.22);
+      color:#fff;
+      flex:0 0 46px;
+      transition:0.22s ease;
+    }
+
+    .back-home:hover{
+      transform:translateY(-2px);
+      background:linear-gradient(135deg, rgba(255,255,255,0.26), rgba(255,255,255,0.10));
+    }
+
+    .back-home svg{
+      width:20px;
+      height:20px;
+      display:block;
     }
 
     .brand{
       display:flex;
       align-items:center;
       gap:14px;
+      min-width:0;
     }
 
     .brand-mark{
@@ -185,6 +228,12 @@
 
     .hero-lang{
       display:none;
+    }
+
+    .app-kicker,
+    .shots-note,
+    .shot-placeholder{
+      display:none !important;
     }
 
     .shots{
@@ -476,19 +525,29 @@
 
   <header class="site-header">
     <div class="container nav">
-      <div class="lang-switcher" id="langChips" aria-label="Choix de langue">
-        <button class="lang-btn" type="button" data-lang="fr" aria-label="Français" title="Français"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" x="0" fill="#0055A4"/><rect width="1" height="2" x="1" fill="#FFFFFF"/><rect width="1" height="2" x="2" fill="#EF4135"/></svg></button>
-            <button class="lang-btn active" type="button" data-lang="en" aria-label="English" title="English"><svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#B22234"/><g fill="#FFFFFF"><rect y="2.307" width="60" height="2.307"/><rect y="6.923" width="60" height="2.307"/><rect y="11.538" width="60" height="2.307"/><rect y="16.153" width="60" height="2.307"/><rect y="20.769" width="60" height="2.307"/><rect y="25.384" width="60" height="2.307"/></g><rect width="24" height="16.154" fill="#3C3B6E"/></svg></button>
+      <div class="nav-left">
+        <a href="index.html" class="back-home" aria-label="Retour à l'accueil">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <a href="index.html" class="brand" aria-label="Retour à l'accueil VBoldStudio">
+          <div class="brand-mark">
+            <img src="assets/logos/vboldstudio-logo.png" alt="Logo VBoldStudio" />
+          </div>
+          <div class="brand-text">
+            <strong>VBoldStudio</strong>
+          </div>
+        </a>
       </div>
 
-      <a href="index.html" class="brand" aria-label="Retour à l'accueil VBoldStudio">
-        <div class="brand-mark">
-          <img src="assets/logos/vboldstudio-logo.png" alt="Logo VBoldStudio" />
+      <div class="nav-right">
+        <div class="lang-switcher" id="langChips" aria-label="Choix de langue">
+        <button class="lang-btn" type="button" data-lang="fr" aria-label="Français" title="Français"><svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="2" x="0" fill="#0055A4"/><rect width="1" height="2" x="1" fill="#FFFFFF"/><rect width="1" height="2" x="2" fill="#EF4135"/></svg></button>
+            <button class="lang-btn active" type="button" data-lang="en" aria-label="English" title="English"><svg viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="30" fill="#B22234"/><g fill="#FFFFFF"><rect y="2.307" width="60" height="2.307"/><rect y="6.923" width="60" height="2.307"/><rect y="11.538" width="60" height="2.307"/><rect y="16.153" width="60" height="2.307"/><rect y="20.769" width="60" height="2.307"/><rect y="25.384" width="60" height="2.307"/></g><rect width="24" height="16.154" fill="#3C3B6E"/></svg></button>
         </div>
-        <div class="brand-text">
-          <strong>VBoldStudio</strong>
-        </div>
-      </a>
+      </div>
     </div>
   </header>
 
@@ -503,7 +562,6 @@
             </div>
 
             <div>
-              <div class="app-kicker">Privacy Policy</div>
               <h1 class="hero-title">VBlocks</h1>
               <div class="hero-lang lang-section" data-lang="fr"><p class="hero-desc">Un jeu de puzzle rapide et accessible, pensé pour des sessions courtes, lisibles et immédiatement rejouables.</p></div><div class="hero-lang lang-section active" data-lang="en"><p class="hero-desc">A fast and accessible puzzle game designed for short sessions, clear gameplay, and instant replay value.</p></div>
             </div>
@@ -512,7 +570,6 @@
           <section class="shots">
             <div class="shots-head">
               <h2 class="shots-title">Visuels de la page</h2>
-              <div class="shots-note">3 emplacements prêts à recevoir tes captures</div>
             </div>
 
             <div class="shots-grid">
